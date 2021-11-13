@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,32 +36,32 @@ namespace ConsoleApplication1
             loc = Console.ReadLine();
             foreach (Country c in massiveCountry)
             {
-                if (loc == c.name)
+                while (loc != c.name)
                 {
-                    selectedcountry = c;
-                    break;
+                    if (loc == c.name)
+                    {
+                        selectedcountry = c;
+                        continue;
+                        // goto label;
+                    }
                 }
-                if (selectedcountry == null)
-                {
-                    Console.WriteLine(" нет такой страны ");
-                    return;
-                }
-
             }
+            return;
+            //label:
             massiveHotel.Add(new Hotel(name_hotel, numStar, descr, selectedcountry));
 
         }
-            public void Third()
+        public void Third()
+        {
+            foreach (Hotel c in massiveHotel)
             {
-              foreach (Hotel c in massiveHotel)
-                {
-                    Console.Write(c.name_hotel + " ");
-                    Console.Write(c.numStar + " ");
-                    Console.Write(c.descr + " ");
-                    Console.Write(c.loc.name);
-                    Console.WriteLine("");
-                }
+                Console.Write(c.name_hotel + " ");
+                Console.Write(c.numStar + " ");
+                Console.Write(c.descr + " ");
+                Console.Write(c.loc.name);
+                Console.WriteLine("");
             }
+        }
         public Hotel() { }
     }
 
@@ -70,7 +70,7 @@ namespace ConsoleApplication1
     {
         public string name;
         public string stolitsa;
-        public List<Country> massiveCountry = new List<Country>();
+        static public List<Country> massiveCountry = new List<Country>() { new Country("Россия", "Москва"), new Country("США", "Вашингтон")};
 
         public Country(string Name, string Stol)
         {
@@ -84,7 +84,7 @@ namespace ConsoleApplication1
             name = Console.ReadLine();
             Console.Write("Введите название столицы: ");
             stolitsa = Console.ReadLine();
-            massiveCountry.Add(new Country( name , stolitsa )); // массив
+            massiveCountry.Add(new Country(name, stolitsa)); // массив
         }
         public void Fourth()
         {
@@ -101,7 +101,7 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            
+
             Hotel hotel = new Hotel();
             Country country = new Country();
 
@@ -116,13 +116,14 @@ namespace ConsoleApplication1
                 Console.WriteLine("5) Выход из программы");
                 int n = Convert.ToInt32(Console.ReadLine());
 
-                if (n == 1) {
+                if (n == 1)
+                {
                     country.First();
                     continue;
                 }
                 if (n == 2)
                 {
-                    hotel.Second(hotel.massiveHotel, country.massiveCountry);
+                    hotel.Second(hotel.massiveHotel, Country.massiveCountry);
                     continue;
                 }
                 if (n == 3)
@@ -137,9 +138,9 @@ namespace ConsoleApplication1
                 }
                 else
                 {
-                    break; 
+                    break;
                 }
-                
+
             }
         }
     }
