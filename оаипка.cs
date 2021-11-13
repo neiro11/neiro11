@@ -58,7 +58,7 @@ namespace ConsoleApplication1
                     Console.Write(c.name_hotel + " ");
                     Console.Write(c.numStar + " ");
                     Console.Write(c.descr + " ");
-                    Console.Write(c.massiveHotel.selectedcountry);
+                    Console.Write(c.loc.name);
                     Console.WriteLine("");
                 }
             }
